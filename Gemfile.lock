@@ -95,6 +95,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (3.1.1)
+      i18n (>= 1.8.11, < 2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     haml (6.1.1)
@@ -106,6 +108,8 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
+    heroicon (1.0.0)
+      rails (>= 5.2)
     html2haml (2.3.0)
       erubis (~> 2.7.0)
       haml (>= 4.0)
@@ -233,6 +237,12 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sexp_processor (4.16.1)
+    simple_form (5.2.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
+    simple_form-tailwind (0.1.1)
+      railties (>= 4.0)
+      simple_form (>= 5.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -293,7 +303,9 @@ DEPENDENCIES
   capybara
   debug
   factory_bot_rails
+  faker
   haml-rails
+  heroicon
   html2haml
   importmap-rails
   jbuilder
@@ -306,6 +318,8 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   selenium-webdriver
+  simple_form
+  simple_form-tailwind
   sprockets-rails
   state_machines
   state_machines-activerecord

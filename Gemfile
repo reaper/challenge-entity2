@@ -61,6 +61,10 @@ gem "money-rails"
 gem "state_machines"
 gem "state_machines-activerecord"
 gem "validates_timeliness", "~> 7.0.0.beta2"
+gem "faker"
+gem "heroicon"
+gem "simple_form"
+gem "simple_form-tailwind"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
