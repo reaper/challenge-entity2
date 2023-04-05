@@ -1,3 +1,6 @@
+[![CI](https://github.com/reaper/hostnfly-challenge/actions/workflows/ci.yml/badge.svg)](https://github.com/reaper/hostnfly-challenge/actions/workflows/ci.yml)
+[![Linters](https://github.com/reaper/hostnfly-challenge/actions/workflows/linters.yml/badge.svg)](https://github.com/reaper/hostnfly-challenge/actions/workflows/linters.yml)
+
 # Hostnfly challenge
 
 We are building a listing rentals management company; let’s call it HostnFly ;)
