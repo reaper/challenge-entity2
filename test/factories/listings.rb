@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :listing do
-    num_rooms { rand(1..10) }
+    num_rooms { 2 }
   end
 end
