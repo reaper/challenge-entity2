@@ -90,6 +90,11 @@ GEM
       reline (>= 0.3.1)
     erubi (1.12.0)
     erubis (2.7.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     haml (6.1.1)
@@ -251,6 +256,7 @@ GEM
     temple (0.10.0)
     thor (1.2.1)
     tilt (2.1.0)
+    timeliness (0.4.5)
     timeout (0.3.2)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -259,6 +265,9 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
+    validates_timeliness (7.0.0.beta2)
+      activemodel (>= 7.0.0, < 8)
+      timeliness (>= 0.3.10, < 1)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -283,6 +292,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  factory_bot_rails
   haml-rails
   html2haml
   importmap-rails
@@ -304,6 +314,7 @@ DEPENDENCIES
   tailwindcss-rails
   turbo-rails
   tzinfo-data
+  validates_timeliness (~> 7.0.0.beta2)
   web-console
   webdrivers
 

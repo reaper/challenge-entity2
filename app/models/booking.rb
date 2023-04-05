@@ -2,9 +2,17 @@ class Booking < ApplicationRecord
   belongs_to :listing
   has_many :missions, as: :missionable
 
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+  validates_date :start_date, before: :end_date, on_or_after: lambda { Date.current }
+
   state_machine :state, initial: :active do
     event :cancel do
       transition [:active] => :canceled
+    end
+
+    after_transition to: :canceled do |booking|
+      booking.missions.each(&:cancel!)
     end
   end
 
