@@ -4,8 +4,8 @@ class Listing < ApplicationRecord
   has_many :missions, dependent: :destroy
 
   before_create do
-    self.title = Faker::Fantasy::Tolkien.location
-    self.address = Faker::Address.full_address
-    self.description = Faker::Lorem.paragraph
+    self.title = Faker::Fantasy::Tolkien.location unless self.title.present?
+    self.address = Faker::Address.full_address unless self.address.present?
+    self.description = Faker::Lorem.paragraph unless self.description.present?
   end
 end

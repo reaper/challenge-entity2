@@ -30,7 +30,7 @@ Listing.delete_all
   ]
 }.each do |key, value|
   value.each do |attributes|
-    object = key.to_s.classify.constantize.create!(attributes)
+    object = key.to_s.classify.constantize.create!(attributes.except(:id))
     puts "#{object.class} created: #{object.inspect}"
   end
 end

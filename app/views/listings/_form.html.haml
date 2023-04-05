@@ -1,10 +1,20 @@
-= form_for @listing do |f|
-  - if @listing.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@listing.errors.count, "error")} prohibited this listing from being saved:"
-      %ul
-        - @listing.errors.full_messages.each do |message|
-          %li= message
+-# = form_for @listing do |f|
+-#   - if @listing.errors.any?
+-#     #error_explanation
+-#       %h2= "#{pluralize(@listing.errors.count, "error")} prohibited this listing from being saved:"
+-#       %ul
+-#         - @listing.errors.full_messages.each do |message|
+-#           %li= message
+-#
+-#   .actions
+-#     = f.submit 'Save'
 
-  .actions
-    = f.submit 'Save'
+= simple_form_for @listing, html: { class: "mt-6" } do |f|
+  = f.input :title
+  = f.input :description
+  = f.input :address
+  = f.input :num_rooms
+
+  .sm:col-span-2.sm:flex.sm:justify-end.space-x-4
+    = button_to "Back", listings_path, class: "my-2 bg-blue-300 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded"
+    = f.button :submit, "Envoyer", type: :submit
