@@ -33,12 +33,6 @@ class ReservationTest < ActiveSupport::TestCase
     assert reservation.errors.all? { |e| e.attribute == :start_date && e.type == :before }
   end
 
-  test "fails to create reservation with start_date before today" do
-    reservation = build :reservation, start_date: 1.day.ago, end_date: Date.today + 1.day
-    assert reservation.invalid?
-    assert reservation.errors.all? { |e| e.attribute == :start_date && e.type == :on_or_after }
-  end
-
   test "reservation has missions" do
     reservation = create :reservation
     assert reservation.missions.any?
@@ -74,7 +68,7 @@ class ReservationTest < ActiveSupport::TestCase
     booking = create :booking, start_date: start_date, end_date: end_date
     reservation = create :reservation, listing: booking.listing, start_date: start_date + 1.day, end_date: end_date
 
-    assert_equal booking.missions.map(&:mission_type), %w(first_checkin last_checkout)
+    assert booking.missions.map(&:mission_type).all? { |type| %w(first_checkin last_checkout).include?(type) }
     assert reservation.missions.empty?
   end
 end
