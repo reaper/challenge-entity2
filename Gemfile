@@ -57,6 +57,9 @@ gem "rubocop-rails", require: false
 gem "rubocop-minitest"
 gem "rubocop-packaging"
 gem "rubocop-performance"
+gem "money-rails"
+gem "state_machines"
+gem 'state_machines-activerecord'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
