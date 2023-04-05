@@ -49,7 +49,7 @@ jobs:
           DB_PORT: ${{ job.services.postgres.ports[5432] }}
         run: |
           cp config/database.ci.yml config/database.yml
-          bin/rails db:prepare
+          bin/rails db:create db:migrate
           bundle exec rake assets:precompile
 
       - name: Run tests
