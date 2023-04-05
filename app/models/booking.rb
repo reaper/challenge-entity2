@@ -40,7 +40,7 @@ class Booking < ApplicationRecord
         .last_checkout
         .each(&:cancel!)
 
-      # create last_checkout mission mission
+      # create last_checkout mission
       self.missions.create!(
         mission_type: :last_checkout,
         date: self.end_date,

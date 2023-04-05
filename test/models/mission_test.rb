@@ -21,4 +21,10 @@ class MissionTest < ActiveSupport::TestCase
     assert mission.missionable.is_a?(Reservation)
     assert_equal mission.price.to_i, 20
   end
+
+  test "booking can be canceled" do
+    mission = create :mission
+    mission.cancel!
+    assert mission.canceled?
+  end
 end
