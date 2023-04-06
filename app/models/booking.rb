@@ -12,7 +12,9 @@ class Booking < ApplicationRecord
     end
 
     after_transition to: :canceled do |booking|
-      booking.missions.each(&:cancel!)
+      booking.missions.each do |mission|
+        mission.cancel! unless mission.canceled?
+      end
     end
   end
 
