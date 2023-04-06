@@ -2,47 +2,47 @@ require "test_helper"
 
 class ReservationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @reservation = reservations(:one)
+    @reservation = create(:reservation)
   end
 
   test "should get index" do
-    get reservations_url
+    get listing_reservations_url(@reservation.listing)
     assert_response :success
   end
 
   test "should get new" do
-    get new_reservation_url
+    get new_listing_reservation_url(@reservation.listing)
     assert_response :success
   end
 
   test "should create reservation" do
     assert_difference("Reservation.count") do
-      post reservations_url, params: { reservation: {  } }
+      post listing_reservations_url(@reservation.listing), params: { reservation: { start_date: Date.today, end_date: Date.today + 1.day } }
     end
 
-    assert_redirected_to reservation_url(Reservation.last)
+    assert_redirected_to listing_url(@reservation.listing)
   end
 
   test "should show reservation" do
-    get reservation_url(@reservation)
+    get listing_reservation_url(@reservation.listing, @reservation)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_reservation_url(@reservation)
+    get edit_listing_reservation_url(@reservation.listing, @reservation)
     assert_response :success
   end
 
   test "should update reservation" do
-    patch reservation_url(@reservation), params: { reservation: {  } }
-    assert_redirected_to reservation_url(@reservation)
+    patch listing_reservation_url(@reservation.listing, @reservation), params: { reservation: { end_date: 1.week.from_now } }
+    assert_redirected_to listing_url(@reservation.listing)
   end
 
   test "should destroy reservation" do
     assert_difference("Reservation.count", -1) do
-      delete reservation_url(@reservation)
+      delete listing_reservation_url(@reservation.listing, @reservation)
     end
 
-    assert_redirected_to reservations_url
+    assert_redirected_to listing_url(@reservation.listing)
   end
 end

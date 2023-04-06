@@ -17,7 +17,7 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create listing" do
     assert_difference("Listing.count") do
-      post listings_url, params: { listing: {} }
+      post listings_url, params: { listing: { num_rooms: 3} }
     end
 
     assert_redirected_to listing_url(Listing.last)
@@ -34,7 +34,7 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update listing" do
-    patch listing_url(@listing), params: { listing: {} }
+    patch listing_url(@listing), params: { listing: { num_rooms: 5 } }
     assert_redirected_to listing_url(@listing)
   end
 

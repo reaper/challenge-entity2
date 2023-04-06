@@ -2,47 +2,47 @@ require "test_helper"
 
 class BookingsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @booking = bookings(:one)
+    @booking = create(:booking)
   end
 
   test "should get index" do
-    get bookings_url
+    get listing_bookings_url(@booking.listing)
     assert_response :success
   end
 
   test "should get new" do
-    get new_booking_url
+    get new_listing_booking_url(@booking.listing)
     assert_response :success
   end
 
   test "should create booking" do
     assert_difference("Booking.count") do
-      post bookings_url, params: { booking: {  } }
+      post listing_bookings_url(@booking.listing), params: { booking: { start_date: Date.today, end_date: Date.today + 1.day } }
     end
 
-    assert_redirected_to booking_url(Booking.last)
+    assert_redirected_to listing_url(@booking.listing)
   end
 
   test "should show booking" do
-    get booking_url(@booking)
+    get listing_booking_url(@booking.listing, @booking)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_booking_url(@booking)
+    get edit_listing_booking_url(@booking.listing, @booking)
     assert_response :success
   end
 
   test "should update booking" do
-    patch booking_url(@booking), params: { booking: {  } }
-    assert_redirected_to booking_url(@booking)
+    patch listing_booking_url(@booking.listing, @booking), params: { booking: { end_date: 1.week.from_now } }
+    assert_redirected_to listing_url(@booking.listing)
   end
 
   test "should destroy booking" do
     assert_difference("Booking.count", -1) do
-      delete booking_url(@booking)
+      delete listing_booking_url(@booking.listing, @booking)
     end
 
-    assert_redirected_to bookings_url
+    assert_redirected_to listing_url(@booking.listing)
   end
 end
