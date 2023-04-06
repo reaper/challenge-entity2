@@ -9,15 +9,15 @@ Deployed with dokku on a VPS
 
 ## Preparations
 
-With docker, run postgresql in a container:
-```
-docker-compose up -d
-```
-
 Install ruby 3.2.2 and gems
 ```
 rvm install 3.2.2 # if you like rvm
 bundle install
+```
+
+With docker, run postgresql in a container:
+```
+docker-compose up -d
 ```
 
 Prepare the database for local development
@@ -32,6 +32,11 @@ Run the server
 ./bin/dev
 ```
 
+## Run tests
+
+```
+rails test:all
+```
 
 
 # Challenge description
