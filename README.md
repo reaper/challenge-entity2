@@ -4,7 +4,7 @@
 # Hostnfly challenge
 
 ## Website
-A website representing has been deployed at https://hostnfly-challenge.fiwares.com
+A website representing the challenge has been deployed at https://hostnfly-challenge.fiwares.com
 Deployed with dokku on a VPS
 
 ## Preparations
