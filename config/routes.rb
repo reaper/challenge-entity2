@@ -5,6 +5,11 @@ Rails.application.routes.draw do
         get :cancel
       end
     end
+    resources :reservations do
+      member do
+        get :cancel
+      end
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
