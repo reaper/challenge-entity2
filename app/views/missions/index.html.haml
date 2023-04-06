@@ -1,0 +1,38 @@
+.w-full.bg-white.py-24.sm:py-32
+  .mx-auto.max-w-7xl.px-6.lg:px-8
+    .mx-auto.max-w-2xl.text-center
+      %h2.text-3xl.font-bold.tracking-tight.text-gray-900.sm:text-4xl Missions
+
+    .px-4.sm:px-6.lg:px-8.mt-16
+      .mt-8.flow-root
+        .-mx-4.-my-2.overflow-x-auto.sm:-mx-6.lg:-mx-8
+          .inline-block.min-w-full.py-2.align-middle.sm:px-6.lg:px-8
+            %table.min-w-full.divide-y.divide-gray-300
+              %thead
+                %tr
+                  %th.pl-4.pr-3.text-left.text-sm.font-semibold.text-gray-900.sm:pl-0{:class => "py-3.5", :scope => "col"} Listing
+                  %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Type
+                  %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Date
+                  %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Price
+                  %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} State
+                  -# %th.relative.pl-3.pr-4.sm:pr-0{:class => "py-3.5", :scope => "col"}
+                  -#   %span.sr-only Edit
+              %tbody.divide-y.divide-gray-200.bg-white
+                - @missions.each do |mission|
+                  %tr
+                    %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.sm:pl-0
+                      = link_to mission.listing do
+                        = mission.listing.title
+                        = "(#{mission.listing.id})"
+                    %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500
+                      = mission.mission_type
+                    %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500
+                      = mission.date
+                    %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500
+                      = mission.price
+                      = mission.price_currency
+                    %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500
+                      %span.inline-flex.rounded-full.px-2.text-xs.font-semibold.leading-5{ class: mission.canceled? ? "bg-red-100 text-red-800" : "bg-green-100 text-green-800" }
+                        = mission.state.upcase
+                    -# %td.relative.whitespace-nowrap.py-4.pl-3.pr-4.text-right.text-sm.font-medium.sm:pr-0
+                    -#   = link_to "Cancel", cancel_listing_booking_path(@listing, booking), class: "text-red-600 hover:text-red-900"
