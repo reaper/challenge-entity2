@@ -3,6 +3,38 @@
 
 # Hostnfly challenge
 
+## Website
+A website representing has been deployed at https://hostnfly-challenge.fiwares.com
+Deployed with dokku on a VPS
+
+## Preparations
+
+With docker, run postgresql in a container:
+```
+docker-compose up -d
+```
+
+Install ruby 3.2.2 and gems
+```
+rvm install 3.2.2 # if you like rvm
+bundle install
+```
+
+Prepare the database for local development
+```
+rails db:prepare
+```
+
+FYI seeds file contains the input hash which should be processed for the challenge
+
+Run the server
+```
+./bin/dev
+```
+
+
+
+# Challenge description
 We are building a listing rentals management company; let’s call it HostnFly ;)
 
 4 main objects populate our app:
