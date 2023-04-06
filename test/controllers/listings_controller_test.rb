@@ -17,7 +17,7 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create listing" do
     assert_difference("Listing.count") do
-      post listings_url, params: { listing: { num_rooms: 3} }
+      post listings_url, params: { listing: { num_rooms: 3 } }
     end
 
     assert_redirected_to listing_url(Listing.last)
@@ -44,5 +44,57 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to listings_url
+  end
+
+  ## JSON
+
+  test "should get index with json" do
+    get listings_url, as: :json
+    assert_response :success
+    assert response.parsed_body.is_a?(Array)
+    assert response.parsed_body.first.is_a?(Hash)
+    assert response.parsed_body.first["id"].present?
+    assert response.parsed_body.first["num_rooms"].present?
+  end
+
+  test "should create listing with json" do
+    assert_difference("Listing.count") do
+      post listings_url,
+      params: {
+        listing: {
+          num_rooms: 2
+        }
+      }, as: :json
+
+      assert response.parsed_body.is_a?(Hash)
+      assert response.parsed_body["id"].present?
+      assert response.parsed_body["num_rooms"].present?
+    end
+  end
+
+  test "should show listing with json" do
+    get listing_url(@listing), as: :json
+    assert_response :success
+    assert response.parsed_body.is_a?(Hash)
+    assert response.parsed_body["id"].present?
+    assert response.parsed_body["num_rooms"].present?
+  end
+
+  test "should update listing with json" do
+    patch listing_url(@listing),
+      params: {
+        listing: {
+          num_rooms: 3
+        }
+      }, as: :json
+    assert response.parsed_body.is_a?(Hash)
+    assert response.parsed_body["id"].present?
+    assert response.parsed_body["num_rooms"].present?
+  end
+
+  test "should destroy listing with json" do
+    assert_difference("Listing.count", -1) do
+      delete listing_url(@listing), as: :json
+    end
   end
 end

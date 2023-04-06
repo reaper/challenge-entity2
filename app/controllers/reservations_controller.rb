@@ -40,7 +40,7 @@ class ReservationsController < ApplicationController
     respond_to do |format|
       if @reservation.update(reservation_params)
         format.html { redirect_to listing_url(@listing), notice: "Reservation was successfully updated." }
-        format.json { render :show, status: :ok, location: @reservation }
+        format.json { render :show, status: :ok }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
