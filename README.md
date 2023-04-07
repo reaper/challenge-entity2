@@ -8,6 +8,9 @@ A website representing the challenge has been deployed to https://hostnfly-chall
 
 Deployed with dokku on a VPS (we can discuss about it later)
 
+<img width="1248" alt="Screenshot 2023-04-07 at 09 35 14" src="https://user-images.githubusercontent.com/82464/230564225-8e708a2b-ba15-4229-81fb-c6eff6fca6f1.png">
+
+
 ## Preparations
 
 Install ruby 3.2.2 and gems
