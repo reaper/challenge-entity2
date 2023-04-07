@@ -5,7 +5,8 @@
 
 ## Website
 A website representing the challenge has been deployed to https://hostnfly-challenge.fiwares.com
-Deployed with dokku on a VPS
+
+Deployed with dokku on a VPS (we can discuss about it later)
 
 ## Preparations
 
@@ -25,7 +26,7 @@ Prepare the database for local development
 rails db:prepare
 ```
 
-FYI seeds file contains the input hash which should be processed for the challenge:
+FYI `seeds.rb` file contains the input hash which had to be processed for the challenge:
 ```
 {
   "listings": [
