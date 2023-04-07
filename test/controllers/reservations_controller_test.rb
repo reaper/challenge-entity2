@@ -16,8 +16,15 @@ class ReservationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create reservation" do
+    booking = @reservation.listing.bookings.first
     assert_difference("Reservation.count") do
-      post listing_reservations_url(@reservation.listing), params: { reservation: { start_date: Date.today, end_date: Date.today + 1.day } }
+      post listing_reservations_url(@reservation.listing),
+        params: {
+          reservation: {
+            start_date: booking.start_date + 1.day,
+            end_date: booking.end_date - 1.day
+          }
+        }
     end
 
     assert_redirected_to listing_url(@reservation.listing)
@@ -59,12 +66,13 @@ class ReservationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create reservation with json" do
+    booking = @reservation.listing.bookings.first
     assert_difference("Reservation.count") do
       post listing_reservations_url(@reservation.listing),
       params: {
         reservation: {
-          start_date: Date.today,
-          end_date: Date.today + 1.day
+          start_date: booking.start_date + 1.day,
+          end_date: booking.end_date - 1.day
         }
       }, as: :json
 

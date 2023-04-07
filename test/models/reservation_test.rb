@@ -28,9 +28,28 @@ class ReservationTest < ActiveSupport::TestCase
   end
 
   test "fails to create reservation with end_date before start_date" do
-    reservation = build :reservation, start_date: Date.today, end_date: Date.today - 1.day
+    reservation = create :reservation
+    booking = reservation.listing.bookings.first
+
+    reservation.start_date = booking.start_date + 3.day
+    reservation.end_date = booking.start_date + 2.day
+
     assert reservation.invalid?
     assert reservation.errors.all? { |e| e.attribute == :start_date && e.type == :before }
+  end
+
+  test "fails to create reservation before today" do
+    reservation = build :reservation, start_date: 1.week.ago, end_date: Date.today + 1.day
+    assert reservation.invalid?
+    assert reservation.errors.any? { |e| e.attribute == :start_date && e.type == :on_or_after }
+  end
+
+  test "fails to create reservation out of any booking date range" do
+    reservation = build :reservation
+    reservation.start_date = reservation.listing.bookings.first.start_date - 1.day
+
+    assert reservation.invalid?
+    assert reservation.errors.any? { |e| e.attribute == :start_date && e.type.include?("is not available") }
   end
 
   test "reservation has missions" do

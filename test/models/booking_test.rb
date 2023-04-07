@@ -33,6 +33,12 @@ class BookingTest < ActiveSupport::TestCase
     assert booking.errors.all? { |e| e.attribute == :start_date && e.type == :before }
   end
 
+  test "fails to create booking before today" do
+    booking = build :booking, start_date: Date.today - 1.week, end_date: Date.today + 1.day
+    assert booking.invalid?
+    assert booking.errors.all? { |e| e.attribute == :start_date && e.type == :on_or_after }
+  end
+
   test "booking has missions" do
     booking = create :booking
     assert booking.missions.any?

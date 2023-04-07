@@ -4,7 +4,7 @@ class Booking < ApplicationRecord
 
   validates :start_date, presence: true
   validates :end_date, presence: true
-  validates_date :start_date, before: :end_date # , on_or_after: lambda { Date.current }
+  validates_date :start_date, before: :end_date, on_or_after: lambda { Date.current }
 
   state_machine :state, initial: :active do
     event :cancel do

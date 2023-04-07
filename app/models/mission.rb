@@ -14,6 +14,8 @@ class Mission < ApplicationRecord
   belongs_to :missionable, polymorphic: true
   belongs_to :listing
 
+  default_scope { order(listing_id: :asc, date: :desc) }
+
   before_validation :set_defaults
   before_validation :set_price
 

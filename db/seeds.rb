@@ -30,7 +30,12 @@ Listing.delete_all
   ]
 }.each do |key, value|
   value.each do |attributes|
-    object = key.to_s.classify.constantize.create!(attributes.except(:id))
+    object = key.to_s.classify.constantize.new(attributes)
+    object.save(validate: false)
     puts "#{object.class} created: #{object.inspect}"
   end
+end
+
+ActiveRecord::Base.connection.tables.each do |table_name|
+  ActiveRecord::Base.connection.reset_pk_sequence!(table_name)
 end

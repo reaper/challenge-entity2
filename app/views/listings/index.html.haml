@@ -14,11 +14,11 @@
             .flex.flex-wrap.items-center.gap-y-1.overflow-hidden.text-sm.leading-6.text-gray-300
               %time.mr-8= listing.created_at.to_fs(:short)
             %h3.mt-3.text-lg.font-semibold.leading-6.text-white
-              %a{:href => "#"}
+              = link_to listing do
                 %span.absolute.inset-0
                 = listing.title
             .mt-3.text-sm.leading-6.text-white
-              %a{:href => "#"}
+              = link_to listing do
                 %span.absolute.inset-0
                 = listing.address
             .mt-3.text-sm.leading-6.text-white
