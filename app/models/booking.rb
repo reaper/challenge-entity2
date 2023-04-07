@@ -5,6 +5,11 @@ class Booking < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates_date :start_date, before: :end_date, on_or_after: lambda { Date.current }
+  validate :check_overlapping
+
+  scope :overlaps, -> (start_date, end_date) do
+    where "((start_date <= ?) and (end_date >= ?))", end_date, start_date
+  end
 
   state_machine :state, initial: :active do
     event :cancel do
@@ -22,6 +27,12 @@ class Booking < ApplicationRecord
   after_save :create_last_checkout_missions, if: -> { self.saved_change_to_end_date? }
 
   private
+    def check_overlapping
+      if Booking.overlaps(start_date, end_date).any?
+        errors.add(:start_date, "overlaps existing reservation")
+      end
+    end
+
     def create_first_checkin_missions
       # cancel existing missions
       self.missions
