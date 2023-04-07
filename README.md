@@ -56,6 +56,16 @@ FYI seeds file contains the input hash which should be processed for the challen
 
 ```
 rails test:all
+
+Running 68 tests in parallel using 8 processes
+Run options: --seed 28305
+
+# Running:
+
+....................................................................
+
+Finished in 1.227350s, 55.4039 runs/s, 123.8441 assertions/s.
+68 runs, 152 assertions, 0 failures, 0 errors, 0 skips
 ```
 
 
