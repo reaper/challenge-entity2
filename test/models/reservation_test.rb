@@ -81,11 +81,12 @@ class ReservationTest < ActiveSupport::TestCase
   end
 
   test "fails to create checkout_checkin mission if already existing last_checkout" do
-    start_date = Date.today
-    end_date = Date.today + 3.day
+    reservation = build :reservation
+    booking = reservation.listing.bookings.first
 
-    booking = create :booking, start_date: start_date, end_date: end_date
-    reservation = create :reservation, listing: booking.listing, start_date: start_date + 1.day, end_date: end_date
+    reservation.start_date = booking.start_date + 1.day
+    reservation.end_date = booking.end_date
+    reservation.save
 
     assert booking.missions.map(&:mission_type).all? { |type| %w(first_checkin last_checkout).include?(type) }
     assert reservation.missions.empty?

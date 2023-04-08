@@ -21,7 +21,7 @@ class ReservationsControllerTest < ActionDispatch::IntegrationTest
       post listing_reservations_url(@reservation.listing),
         params: {
           reservation: {
-            start_date: booking.start_date + 1.day,
+            start_date: booking.start_date + 1.week,
             end_date: booking.end_date - 1.day
           }
         }
@@ -71,7 +71,7 @@ class ReservationsControllerTest < ActionDispatch::IntegrationTest
       post listing_reservations_url(@reservation.listing),
       params: {
         reservation: {
-          start_date: booking.start_date + 1.day,
+          start_date: booking.start_date + 1.week,
           end_date: booking.end_date - 1.day
         }
       }, as: :json
