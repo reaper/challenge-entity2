@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title HostnflyChallenge
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  %body
+    %main.container.mx-auto.px-5.flex.flex-col.w-full
+      %nav.flex.items-center.justify-center.p-6.lg:px-8{"aria-label" => "Global"}
+        .hidden.lg:flex.lg:gap-x-12
+          = link_to "Home", root_path, class: "text-sm font-semibold leading-6 text-gray-900"
+          = link_to "Listings", listings_path, class: "text-sm font-semibold leading-6 text-gray-900"
+          = link_to "Missions", missions_path, class: "text-sm font-semibold leading-6 text-gray-900"
+
+      = yield
